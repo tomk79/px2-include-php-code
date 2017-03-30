@@ -30,8 +30,10 @@ class publishTest extends PHPUnit_Framework_TestCase{
 		// var_dump($indexHtml);
 		$this->assertTrue( 1 < strpos( $indexHtml, '<p><?php echo "echo in theme"; ?></p>' ) );
 		$this->assertTrue( 1 < strpos( $indexHtml, '<p><?php echo "echo in contents"; ?></p>' ) );
+		$this->assertTrue( 1 < strpos( $indexHtml, '<?php include($_SERVER[\'DOCUMENT_ROOT\'].\'/common/includes/test.inc\'); ?>' ) );
 		$this->assertFalse( strpos( $indexHtml, '<p>echo in theme</p>' ) );
 		$this->assertFalse( strpos( $indexHtml, '<p>echo in contents</p>' ) );
+		$this->assertFalse( strpos( $indexHtml, '<p>include file.</p>' ) );
 
 		// 後始末
 		$output = $this->passthru( [

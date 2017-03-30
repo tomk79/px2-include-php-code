@@ -28,8 +28,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 		$this->assertFalse( strpos( $indexHtml, '<p><?php echo "echo in theme"; ?></p>' ) );
 		$this->assertFalse( strpos( $indexHtml, '<p><?php echo "echo in contents"; ?></p>' ) );
+		$this->assertFalse( strpos( $indexHtml, '<?php include($_SERVER[\'DOCUMENT_ROOT\'].\'/common/includes/test.inc\'); ?>' ) );
 		$this->assertTrue( 1 < strpos( $indexHtml, '<p>echo in theme</p>' ) );
 		$this->assertTrue( 1 < strpos( $indexHtml, '<p>echo in contents</p>' ) );
+		$this->assertTrue( 1 < strpos( $indexHtml, '<p>include file.</p>' ) );
 
 
 		// 後始末
