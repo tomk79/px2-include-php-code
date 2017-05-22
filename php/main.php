@@ -42,6 +42,9 @@ class main{
 			$current_path = $this->px->req()->get_request_file_path();
 		}
 
+		$cd = realpath('.');
+		chdir(dirname($this->px->get_realpath_docroot().$current_path));
+
 		// SSI命令の解決
 		$tmp_src = $src;
 		$src = '';
@@ -66,6 +69,8 @@ class main{
 			}
 			continue;
 		}
+
+		chdir($cd);
 
 		return $src;
 	}

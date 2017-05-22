@@ -43,6 +43,33 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 	}//testPreview()
 
+	/**
+	 * 相対パスの解決
+	 */
+	public function testResolveRelativePath(){
+
+		// トップページの出力コードを検査
+		$indexHtml = $this->passthru( [
+			'php',
+			__DIR__.'/testdata/standard/.px_execute.php' ,
+			'-u', 'Mozilla/0.5',
+			'/include_test/index.html' ,
+		] );
+		// var_dump($indexHtml);
+
+		$this->assertTrue( 1 < strpos( $indexHtml, '<div class="cont_include_1"><p>include file.</p>' ) );
+		$this->assertTrue( 1 < strpos( $indexHtml, '<div class="cont_include_2"><p>include file.</p>' ) );
+
+
+		// 後始末
+		$output = $this->passthru( [
+			'php',
+			__DIR__.'/testdata/standard/.px_execute.php' ,
+			'/?PX=clearcache' ,
+		] );
+
+	}//testResolveRelativePath()
+
 
 
 	/**
