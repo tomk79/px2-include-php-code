@@ -7,7 +7,7 @@ Pickles 2 に、パブリッシュ後のコードにPHPを出力できる文法�
 
 埋め込みPHPコードを `<!--?php` と `?-->` で囲います。
 
-```
+```php
 <!--?php include($_SERVER['DOCUMENT_ROOT'])."/common/includes/sample.inc" ?-->
 ```
 
@@ -23,20 +23,18 @@ Pickles 2 に、パブリッシュ後のコードにPHPを出力できる文法�
 
 ## セットアップ - Setup
 
-### 1. [Pickles 2](http://pickles2.pxt.jp/) をセットアップ
+### 1. [Pickles 2](https://pickles2.pxt.jp/) をセットアップ
+
+```
+$ composer create-project pickles2/preset-get-start-pickles2 ./
+```
 
 ### 2. composer.json に、パッケージ情報を追加
 
-```
+```json
 {
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/tomk79/px2-include-php-code.git"
-        }
-    ],
     "require": {
-        "tomk79/px2-include-php-code": "dev-master"
+        "tomk79/px2-include-php-code": "^0.1"
     }
 }
 ```
@@ -53,7 +51,7 @@ $ composer update
 
 `$conf->funcs->html` に、プラグインを設定します。
 
-```
+```php
 <?php
 return call_user_func( function(){
 
@@ -73,14 +71,21 @@ return call_user_func( function(){
 ```
 
 
+## 更新履歴 - Changelog
+
+### tomk79/px2-include-php-code v0.1.0 (2019年1月12日)
+
+- Initial Release.
+
+
 ## ライセンス - License
 
-Copyright (c)2001-2016 Tomoya Koyanagi, and Pickles 2 Project<br />
+Copyright (c)2001-2019 Tomoya Koyanagi, and Pickles 2 Project<br />
 MIT License https://opensource.org/licenses/mit-license.php
 
 
 ## 作者 - Author
 
 - Tomoya Koyanagi <tomk79@gmail.com>
-- website: <http://www.pxt.jp/>
-- Twitter: @tomk79 <http://twitter.com/tomk79/>
+- website: <https://www.pxt.jp/>
+- Twitter: @tomk79 <https://twitter.com/tomk79/>
