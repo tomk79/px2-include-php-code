@@ -34,6 +34,9 @@ class publishTest extends PHPUnit_Framework_TestCase{
 		$this->assertFalse( strpos( $indexHtml, '<p>echo in theme</p>' ) );
 		$this->assertFalse( strpos( $indexHtml, '<p>echo in contents</p>' ) );
 		$this->assertFalse( strpos( $indexHtml, '<p>include file.</p>' ) );
+		$this->assertTrue( 1 < strpos( $indexHtml, '<?php if( 1 ){ ?>' ) );
+		$this->assertTrue( 1 < strpos( $indexHtml, '<p><?php echo htmlspecialchars(\'複数のPHPブロックに分けて実装するテスト\'); ?></p>' ) );
+		$this->assertTrue( 1 < strpos( $indexHtml, '<?php } ?>' ) );
 
 		// 後始末
 		$output = $this->passthru( [

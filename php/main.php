@@ -45,29 +45,44 @@ class main{
 		$cd = realpath('.');
 		chdir(dirname($this->px->get_realpath_docroot().$current_path));
 
+		$is_publish_tool = $this->px->is_publish_tool();
+
 		// SSI命令の解決
 		$tmp_src = $src;
 		$src = '';
+		$eval_code = '';
 		while(1){
 			$tmp_preg_pattern = '/^(.*?)'.preg_quote('<!--?php','/').'\s+(.*?)\s*'.preg_quote('?-->','/').'(.*)$/s';
 			if( !preg_match($tmp_preg_pattern, $tmp_src, $tmp_matched) ){
-				$src .= $tmp_src;
+				if( !$is_publish_tool ){
+					// プレビュー時: eval() 実行する
+					$eval_code .= 'echo '.var_export($tmp_src, true).';';
+				}else{
+					$src .= $tmp_src;
+				}
 				break;
 			}
-			$src .= $tmp_matched[1];
+			$html_block = $tmp_matched[1];
 			$php_code = $tmp_matched[2];
 			$tmp_src = $tmp_matched[3];
 
-			if( !$this->px->is_publish_tool() ){
+			if( !$is_publish_tool ){
 				// プレビュー時: eval() 実行する
-				ob_start();
-				eval( $php_code );
-				$src .= ob_get_clean();
+				$eval_code .= 'echo '.var_export($html_block, true).';';
+				$eval_code .= $php_code;
 			}else{
 				// パブリッシュ時: PHPコードとして出力する
+				$src .= $html_block;
 				$src .= '<'.'?php '.$php_code.' ?'.'>';
 			}
 			continue;
+		}
+
+		if( !$is_publish_tool ){
+			// プレビュー時: eval() 実行する
+			ob_start();
+			eval( $eval_code );
+			$src = ob_get_clean();
 		}
 
 		chdir($cd);

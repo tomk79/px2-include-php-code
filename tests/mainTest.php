@@ -32,6 +32,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertTrue( 1 < strpos( $indexHtml, '<p>echo in theme</p>' ) );
 		$this->assertTrue( 1 < strpos( $indexHtml, '<p>echo in contents</p>' ) );
 		$this->assertTrue( 1 < strpos( $indexHtml, '<p>include file.</p>' ) );
+		$this->assertTrue( 1 < strpos( $indexHtml, '<p>複数のPHPブロックに分けて実装するテスト</p>' ) );
 
 
 		// 後始末

@@ -73,6 +73,10 @@ return call_user_func( function(){
 
 ## 更新履歴 - Changelog
 
+### tomk79/px2-include-php-code v0.1.1 (リリース日未定)
+
+- 複数のPHPブロックに分割されたコードが、プレビュー時に文法エラーを起こす問題を修正。
+
 ### tomk79/px2-include-php-code v0.1.0 (2019年1月12日)
 
 - Initial Release.
