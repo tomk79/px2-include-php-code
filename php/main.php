@@ -39,11 +39,11 @@ class main{
 	 */
 	public function apply($src, $current_path = null){
 		if( is_null($current_path) ){
-			$current_path = $this->px->req()->get_request_file_path();
+			$current_path = $this->px->get_path_content();
 		}
 
 		$cd = realpath('.');
-		chdir(dirname($this->px->get_realpath_docroot().$current_path));
+		@chdir(dirname($this->px->get_realpath_docroot().$this->px->get_path_controot().$current_path));
 
 		$is_publish_tool = $this->px->is_publish_tool();
 
