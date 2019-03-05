@@ -73,7 +73,7 @@ return call_user_func( function(){
 
 ## 更新履歴 - Changelog
 
-### tomk79/px2-include-php-code v0.1.2 (リリース日未定)
+### tomk79/px2-include-php-code v0.1.2 (2019年3月5日)
 
 - `$conf->path_controot` が `/` 以外の場合と、 ダイナミックパスが有効なページでエラーが起きる問題を修正。
 
