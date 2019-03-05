@@ -38,6 +38,12 @@ class publishTest extends PHPUnit_Framework_TestCase{
 		$this->assertTrue( 1 < strpos( $indexHtml, '<p><?php echo htmlspecialchars(\'複数のPHPブロックに分けて実装するテスト\'); ?></p>' ) );
 		$this->assertTrue( 1 < strpos( $indexHtml, '<?php } ?>' ) );
 
+
+		// コンテンツテンプレートサンプルのソースコードを検査
+		$indexHtml = $this->fs->read_file( __DIR__.'/testdata/standard/px-files/dist/include_test/virtual/directory/index.html' );
+		$this->assertTrue( 1 < strpos( $indexHtml, 'IncTest 2 | px2-include-php-code' ) );
+
+
 		// 後始末
 		$output = $this->passthru( [
 			'php',
